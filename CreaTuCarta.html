@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡¡Crea tu carta y Envíala a tus Amigos!!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>¡¡Crea tu carta y Envíala a tus Amigos!!</h1>
+    <p>Escribe tu carta aquí:</p>
+    <textarea id="carta" placeholder="Escribe tu carta aquí"></textarea>
+    <br>
+    <button onclick="generarEnlace()">Generar Enlace</button>
+    <button onclick="compartirWhatsApp()">Compartir por WhatsApp</button>
+
+    <p>Comparte este enlace con tus amigos:</p>
+    <input type="text" id="enlace" style="width: 100%;" readonly>
+
+    <script>
+        function generarEnlace() {
+            var carta = document.getElementById("carta").value;
+            var cartaCodificada = encodeURIComponent(carta);
+            var url = window.location.href.split('?')[0] + '?carta=' + cartaCodificada;
+            document.getElementById("enlace").value = url;
+        }
+
+        function compartirWhatsApp() {
+            var carta = document.getElementById("carta").value;
+            var mensaje = "¡Hola! Te he enviado una carta digital. Puedes verla aquí: " + document.getElementById("enlace").value;
+            var whatsappURL = "https://api.whatsapp.com/send?text=" + encodeURIComponent(mensaje);
+            window.open(whatsappURL, '_blank');
+        }
+
+        window.onload = function() {
+            var parametros = new URLSearchParams(window.location.search);
+            var carta = parametros.get('carta');
+            if (carta) {
+                document.getElementById("carta").value = decodeURIComponent(carta);
+            }
+        };
+    </script>
+</body>
+</html>
