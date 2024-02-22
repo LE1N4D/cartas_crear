@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensaje como una carta editable</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #mensaje {
+            width: 80%;
+            height: 200px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #mensaje:focus {
+            outline: none;
+            border-color: dodgerblue;
+        }
+        #enviar {
+            padding: 10px 20px;
+            background-color: dodgerblue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mensaje como una carta editable</h1>
+    <p>Escribe tu mensaje aquí:</p>
+    <textarea id="mensaje" placeholder="Escribe tu mensaje aquí"></textarea>
+    <br>
+    <button id="enviar">Enviar mensaje</button>
+
+    <script>
+        document.getElementById("enviar").addEventListener("click", function() {
+            var mensaje = document.getElementById("mensaje").value;
+            alert("Has escrito el siguiente mensaje:\n\n" + mensaje);
+        });
+    </script>
+</body>
+</html>
